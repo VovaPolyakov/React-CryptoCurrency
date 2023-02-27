@@ -9,10 +9,195 @@ body{
     margin: 0 auto;
 }
 
-.crypto_list{
-    padding: 50px;
+.crypto{
+    .crypto_title{
+        font-size: 20px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position:relative;
+        align-items: center;
+        .crypto_time{
+            background: transparent;
+            color: white;
+            font-size:15px;
+            font-weight: 600;
+        }
+        .crypto_filter{
+            display: flex;
+            align-items: center;
+        }
+        .dropdown_menu{
+            position:absolute;
+            right: 0;
+            top: 70px;
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            border-radius: 20px;
+            z-index: 999;
+        }
+    }
+    .crypto_list{
+        padding: 20px 50px 0px 50px ;
+        .crypto_item{
+            display: flex;
+            justify-content: space-between;
+            .crypto_name{
+                font-weight: 600;
+                font-size: 20px;
+            }
+            .crypto_info{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 250px;
+                .crypto_price{
+                }
+                .gg_trending {
+                    margin-top: 6px;
+                    box-sizing: border-box;
+                    position: relative;
+                    display: block;
+                    color: rgb(98, 229, 98);
+                    transform: rotate(-45deg) scale(var(--ggs,1));
+                    width: 10px;
+                    height: 8px;
+                    border-top: 2px solid;
+                    border-right: 2px solid
+                   }
+                   
+                   .gg_trending::after,
+                   .gg_trending::before {
+                    content: "";
+                    display: block;
+                    box-sizing: border-box;
+                    position: absolute
+                   }
+                   
+                   .gg_trending::before {
+                    background: currentColor;
+                    left: 8px;
+                    width: 10px;
+                    height: 2px;
+                    bottom: 0
+                   }
+                   
+                   .gg_trending::after {
+                    width: 0;
+                    height: 0;
+                    border-top: 4px solid transparent;
+                    border-bottom: 4px solid transparent;
+                    border-left: 6px solid;
+                    bottom: -3px;
+                    right: -14px
+                   }
+                   .gg_trending_down {
+                    box-sizing: border-box;
+                    color: #FF5353;
+                    position: relative;
+                    display: block;
+                    transform: rotate(45deg) scale(var(--ggs,1));
+                    width: 10px;
+                    height: 8px;
+                    border-bottom: 2px solid;
+                    border-right: 2px solid
+                   }
+                   
+                   .gg_trending_down::after,
+                   .gg_trending_down::before {
+                    content: "";
+                    display: block;
+                    box-sizing: border-box;
+                    position: absolute
+                   }
+                   
+                   .gg_trending_down::before {
+                    background: currentColor;
+                    left: 8px;
+                    width: 10px;
+                    height: 2px;
+                    top: 0
+                   }
+                   
+                   .gg_trending_down::after {
+                    width: 0;
+                    height: 0;
+                    border-top: 4px solid transparent;
+                    border-bottom: 4px solid transparent;
+                    border-left: 6px solid;
+                    top: -3px;
+                    right: -14px
+                   } 
+            }
+        }
+    }
 }
-.crypto_name{
-    font-weight: 600;
-    font-size: 20px;
-}
+
+
+.crypto_checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .crypto_checkbox {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 15px;
+    user-select: none;
+    transition: 100ms;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .checkmark {
+    top: 0;
+    left: 0;
+    height: 2em;
+    width: 2em;
+    transition: 100ms;
+    animation: dislike_effect 400ms ease;
+  }
+  
+  .crypto_checkbox  input:checked ~ .checkmark path {
+    fill: #FF5353;
+    stroke-width: 0;
+  }
+  
+.crypto_checkbox  input:checked ~ .checkmark {
+    animation: like_effect 400ms ease;
+  }
+  
+  
+  @keyframes like_effect {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes dislike_effect {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
