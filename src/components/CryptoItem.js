@@ -3,22 +3,27 @@ import styles from '../styles/Home.module.scss'
 
 const CryptoItem = ({item,time}) => {
     const [checked,setChecked] = useState(true)
-    const [trend,setTrend] = useState(true)
+
     const handleChange = (e) => {
         setChecked(!checked)
     }
-    useEffect(() => {
-        if(Math.sign(item.quote.USD.percent_change_1h) === -1){
-            setTrend(false)
-        }
-    },[])
+    
+    let period = `percent_change_${time}`
+    const trend = item.quote.USD[period] > 0
+    // useEffect(() => {
+    //     if(Math.sign(item.quote.USD[period]) === -1){
+    //         setTrend(false)
+    //     }else{
+    //         setTrend(true)
+    //     }
+    // },[time])
   return (
     <div className={styles.crypto_item}>
         <p className={styles.crypto_name}>
             {item.name}
         </p>
         <div className={styles.crypto_info}>
-            {item && <p>{`${item.quote.USD.percent_change_1h.toFixed(2)}%`}</p>}
+            <p>{`${item.quote.USD[period].toFixed(2)}%`}</p>
             
             {trend ? <i className={styles.gg_trending}></i> : <i className={styles.gg_trending_down}></i>}
             <div className={styles.crypto_price}>{`${item.quote.USD.price.toFixed(2)}$`}</div>
