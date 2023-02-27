@@ -5,6 +5,7 @@ import './App.css';
 import CryptoContainer from './components/CryptoContainer';
 import CryptoList from './components/CtyptoList';
 import { getCryptoData } from './ducks/crypto/actions';
+import Header from './components/Header';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   },[])
   return <>
     <CryptoContainer>
+      <Header/>
       <CryptoList/>
     </CryptoContainer>
   </>;

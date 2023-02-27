@@ -1,4 +1,18 @@
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Titillium Web', sans-serif;
+}
+
 .container{
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.crypto_list{
+    padding: 50px;
+}
+.crypto_name{
+    font-weight: 600;
+    font-size: 20px;
 }
