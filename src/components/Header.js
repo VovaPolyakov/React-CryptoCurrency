@@ -12,7 +12,7 @@ const Header = () => {
     useEffect(() => {
         if(text){
             const newData = items.filter(item => {
-                return item.name.toLowerCase().includes(text)
+                return item.name.toLowerCase().includes(text.toLowerCase())
             })
             setFilterData(newData)
         }else{
