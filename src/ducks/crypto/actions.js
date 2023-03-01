@@ -11,3 +11,10 @@ export const getCryptoData = () =>  async (dispatch) => {
         payload
     })
 };
+
+export const searchCrypto = (payload) => {
+    return {
+        type: SEARCH_DATA,
+        payload,
+    };
+}
