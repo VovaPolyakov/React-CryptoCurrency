@@ -7,7 +7,7 @@ import {IoIosArrowDropdown} from 'react-icons/io'
 
 const CryptoList = () => {
     const [data,setData] = useState()
-    const items = useSelector((state) => state.crypto.data.data)
+    const items = useSelector((state) => state.crypto.data)
     const [time,setTime] = useState('1h')
     const [menu,setMenu] = useState(false)
     const handleClick = (e) => {
@@ -40,8 +40,8 @@ const CryptoList = () => {
             }
         </div>
         <div className={styles.crypto_list}>
-            {items?.slice(0,10).map((item) => (
-                <CryptoItem time={time} key={item.id} item={item}/>
+            {items?.map((item) => (
+                <CryptoItem time={time} key={item.id} item={item} check={item.favorite}/>
             ))}
         </div>
     </div>

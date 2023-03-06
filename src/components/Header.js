@@ -2,13 +2,16 @@ import React, { useEffect } from 'react'
 import styles from '../styles/Home.module.scss'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import SearchItem from './SeatchItem'
 
 const Header = () => {
     const [text,setText] = useState()
-    const items = useSelector((state) => state.crypto.data.data)
+    const items = useSelector((state) => state.crypto.data)
     const [filterData,setFilterData] = useState()
+    const [checked,setChecked] = useState(true)
 
     // console.log(filterData)
+
     useEffect(() => {
         if(text){
             const newData = items.filter(item => {
@@ -19,9 +22,11 @@ const Header = () => {
             setFilterData()
         }
     },[text])
-    console.log(filterData)
     const handleClick = () => {
         setText('')
+    }
+    const handleChange = () => {
+        setChecked(!checked)
     }
   return (
     <div className={styles.header}>
@@ -48,7 +53,15 @@ const Header = () => {
                     </button>
                 </label>
             </form>
-            {filterData ? <div className={styles.search_div}>{filterData.map(item => (<div>{item.name}</div>))}</div> : <div  className={styles.search_div}>Don't found anything.</div>}
+            {filterData ? 
+                <div className={styles.search_div}>
+                    {filterData.map(item => (
+                        <div className={styles.search_items}>
+                                <SearchItem key={item.id} check={item.favorite} item={item}/>
+                        </div>))}
+                    </div> 
+                    : ''
+            }
         </div>
       </div>
     </div>

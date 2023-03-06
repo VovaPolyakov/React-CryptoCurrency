@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import styles from '../styles/Home.module.scss'
+import { useDispatch } from 'react-redux'
 import { changeFavorite } from '../ducks/crypto/actions'
 
-const CryptoItem = ({item,time,check}) => {
-    const [checked,setChecked] = useState(true)
-    const dispatch = useDispatch()
 
+const SearchItem = ({item,time,check}) => {
+    const [checked,setChecked] = useState(check)
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
-        setChecked(false)
-        dispatch(changeFavorite(e.target.id,false))
+        setChecked(!checked)
+        dispatch(changeFavorite(e.target.id,!checked))
     }
     
     let period = `percent_change_${time}`
@@ -24,7 +24,7 @@ const CryptoItem = ({item,time,check}) => {
     // },[time])
   return (
     <div>
-        { item.favorite ? <div className={styles.crypto_item}>
+        <div className={styles.crypto_item}>
             <p className={styles.crypto_name}>
                 {item.name}
             </p>
@@ -33,7 +33,7 @@ const CryptoItem = ({item,time,check}) => {
                 {trend ? <i className={styles.gg_trending}></i> : <i className={styles.gg_trending_down}></i>}
                 <div className={styles.crypto_price}>{`${item.quote.USD.price.toFixed(2)}$`}</div>
                 <label className={styles.crypto_checkbox}>
-                    <input id={item.id} checked={true} onChange={handleChange} type="checkbox"></input>
+                    <input id={item.id} checked={checked} onChange={handleChange} type="checkbox"></input>
                     <div className={styles.checkmark}>
                         <svg viewBox="0 0 256 256">
                             <rect fill="none" height="256" width="256"></rect>
@@ -42,10 +42,10 @@ const CryptoItem = ({item,time,check}) => {
                     </div>
                 </label>
             </div>
-        </div> : ''}
+        </div>
     </div>
 
   )
 }
 
-export default CryptoItem
+export default SearchItem
