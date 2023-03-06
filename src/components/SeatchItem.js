@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { changeFavorite } from '../ducks/crypto/actions'
 
 
-const SearchItem = ({item,time,check}) => {
+const SearchItem = ({item,check}) => {
     const [checked,setChecked] = useState(check)
     const dispatch = useDispatch();
 
@@ -13,8 +13,6 @@ const SearchItem = ({item,time,check}) => {
         dispatch(changeFavorite(e.target.id,!checked))
     }
     
-    let period = `percent_change_${time}`
-    const trend = item.quote.USD[period] > 0
     // useEffect(() => {
     //     if(Math.sign(item.quote.USD[period]) === -1){
     //         setTrend(false)
@@ -29,8 +27,6 @@ const SearchItem = ({item,time,check}) => {
                 {item.name}
             </p>
             <div className={styles.crypto_info}>
-                {time && <p>{`${item.quote.USD[period].toFixed(2)}%`}</p> }
-                {trend ? <i className={styles.gg_trending}></i> : <i className={styles.gg_trending_down}></i>}
                 <div className={styles.crypto_price}>{`${item.quote.USD.price.toFixed(2)}$`}</div>
                 <label className={styles.crypto_checkbox}>
                     <input id={item.id} checked={checked} onChange={handleChange} type="checkbox"></input>

@@ -55,9 +55,9 @@ const Header = () => {
             </form>
             {filterData ? 
                 <div className={styles.search_div}>
-                    {filterData.map(item => (
-                        <div className={styles.search_items}>
-                                <SearchItem key={item.id} check={item.favorite} item={item}/>
+                    {filterData.map((item) => (
+                        <div  key={item.name} className={styles.search_items}>
+                                <SearchItem  key={item.name} item={item} check={item.favorite}/>
                         </div>))}
                     </div> 
                     : ''

@@ -24,7 +24,6 @@ export const searchCrypto = (search) => {
 }
 
 export const changeFavorite = (id,check) => {
-    console.log(check)
     return{ 
         type: CHANGE_FAVORITE,
         id,
