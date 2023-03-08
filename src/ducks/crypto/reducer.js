@@ -9,11 +9,12 @@ export const initialCryptoState ={
 }
 
 export const cryptoReducer = (state,action) => {
+    console.log(action.result)
     switch(action.type){
         case GET_CRYPTO_DATA:
             return{
-                ...state,   
-                ...action.payload
+                ...state,
+                ...action.result
             }
             
         case CHANGE_FAVORITE:
