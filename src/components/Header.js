@@ -14,7 +14,7 @@ const Header = () => {
 
     useEffect(() => {
         if(text){
-            const newData = items.filter(item => {
+            const newData = JSON.parse(localStorage.getItem('crypto')).filter(item => {
                 return item.name.toLowerCase().includes(text.toLowerCase())
             })
             setFilterData(newData)
@@ -24,9 +24,6 @@ const Header = () => {
     },[text])
     const handleClick = () => {
         setText('')
-    }
-    const handleChange = () => {
-        setChecked(!checked)
     }
   return (
     <div className={styles.header}>

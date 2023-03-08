@@ -25,6 +25,7 @@ export const cryptoReducer = (state,action) => {
                 }
                 return item
             })
+            localStorage.setItem('crypto',JSON.stringify(updateArray))
             return {...state,data:updateArray}
         default: {
             return {

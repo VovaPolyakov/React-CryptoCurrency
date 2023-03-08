@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import CryptoItem from './CryptoItem'
@@ -10,6 +10,8 @@ const CryptoList = () => {
     const items = useSelector((state) => state.crypto.data)
     const [time,setTime] = useState('1h')
     const [menu,setMenu] = useState(false)
+
+
     const handleClick = (e) => {
         setMenu(!menu)
     }
@@ -17,6 +19,7 @@ const CryptoList = () => {
         console.log(e.target.id)
         setTime(e.target.id)
     }
+
   return (
     <div className={styles.crypto}>
         <div className={styles.crypto_title}>
@@ -40,7 +43,7 @@ const CryptoList = () => {
             }
         </div>
         <div className={styles.crypto_list}>
-            {items?.map((item) => (
+            {JSON.parse(localStorage.getItem('crypto'))?.map((item) => (
                 <CryptoItem time={time} key={item.id} item={item} check={item.favorite}/>
             ))}
         </div>
