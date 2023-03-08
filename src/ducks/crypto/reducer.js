@@ -15,8 +15,9 @@ export const cryptoReducer = (state,action) => {
                 ...state,   
                 ...action.payload
             }
+            
         case CHANGE_FAVORITE:
-            const updateArray = state.data.map((item) => {
+            const updateArray = JSON.parse(localStorage.getItem('crypto')).map((item) => {
                 if(item.id == action.id){
                     return{
                         ...item,

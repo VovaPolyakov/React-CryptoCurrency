@@ -10,6 +10,12 @@ export const getCryptoData = () =>  async (dispatch) => {
     payload.data.forEach(element => element.favorite = false);
 
 
+    if(localStorage.getItem('crypto')){
+        console.log('Hello')
+    }else{
+        localStorage.setItem('crypto',JSON.stringify(payload.data))
+    }
+
     dispatch({
         type:GET_CRYPTO_DATA,
         payload
