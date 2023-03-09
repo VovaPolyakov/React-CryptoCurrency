@@ -11,8 +11,15 @@ function getDataFromLocalStorage(){
 async function fetchData(){
     const res = await fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${API_KEY}`)
     const payload = await res.json()
-    payload.data.slice(0,5).forEach(element => element.favorite = true);
-    payload.data.slice(5).forEach(element => element.favorite = false);
+    // payload.data.slice(0,5).forEach(element => element.favorite = true);
+    // payload.data.slice(5).forEach(element => element.favorite = false);
+    payload.data.forEach((element,index) => {
+        if(index < 5){
+            element.favorite = true
+        }else{
+            element.favorite = false
+        }
+    })
     setItemToLocalStorage(payload.data)
     return payload
 }
