@@ -4,31 +4,31 @@ export const CHANGE_FAVORITE = 'CHANGE_FAVORITE'
 
 const API_KEY = '8898e112-e83c-4637-847a-49ff450b9bea'
 
-function getDataFromLocalStorage(){
-    return JSON.parse(localStorage.getItem('crypto'))
-}
+// function getDataFromLocalStorage(){
+//     return JSON.parse(localStorage.getItem('crypto'))
+// }
 
-async function fetchData(){
-    const res = await fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${API_KEY}`)
-    const payload = await res.json()
-    // payload.data.slice(0,5).forEach(element => element.favorite = true);
-    // payload.data.slice(5).forEach(element => element.favorite = false);
-    payload.data.forEach((element,index) => {
-        if(index < 5){
-            element.favorite = true
-        }else{
-            element.favorite = false
-        }
-    })
-    setItemToLocalStorage(payload.data)
-    return payload
-}
+// async function fetchData(){
+//     const res = await fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${API_KEY}`)
+//     const payload = await res.json()
+//     // payload.data.slice(0,5).forEach(element => element.favorite = true);
+//     // payload.data.slice(5).forEach(element => element.favorite = false);
+//     payload.data.forEach((element,index) => {
+//         if(index < 5){
+//             element.favorite = true
+//         }else{
+//             element.favorite = false
+//         }
+//     })
+//     setItemToLocalStorage(payload.data)
+//     return payload
+// }
 
-function setItemToLocalStorage(data){
-    return localStorage.setItem('crypto',JSON.stringify(data))
-}
+// function setItemToLocalStorage(data){
+//     return localStorage.setItem('crypto',JSON.stringify(data))
+// }
 
-export const getCryptoData = () =>  async (dispatch) => {
+// export const getCryptoData = () =>  async (dispatch) => {
     // let payload = []
     // if(localStorage.getItem('crypto')){
     //     console.log('Hello')
@@ -39,19 +39,20 @@ export const getCryptoData = () =>  async (dispatch) => {
     //     payload.data.forEach(element => element.favorite = false);
     //     localStorage.setItem('crypto',JSON.stringify(payload.data))
     // }
-    let result = []
+    // let result = []
 
-    if(localStorage.getItem('crypto')){
-        result = getDataFromLocalStorage()
-    }else{
-        result = await fetchData()
-        console.log('result',result)
-    }
-    console.log('result1',result)
-    dispatch({
+    // if(localStorage.getItem('crypto')){
+    //     result = getDataFromLocalStorage()
+    // }else{
+    //     result = await fetchData()
+    //     console.log('result',result)
+    // }
+    // console.log('result1',result)
+export const getCryptoData = (result) => {
+    return{
         type:GET_CRYPTO_DATA,
         result
-    })
+    }
 };
 
 export const searchCrypto = (search) => {

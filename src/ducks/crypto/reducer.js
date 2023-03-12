@@ -9,9 +9,9 @@ export const initialCryptoState ={
 }
 
 export const cryptoReducer = (state,action) => {
-    console.log(action.result)
     switch(action.type){
         case GET_CRYPTO_DATA:
+            console.log(action.result)
             return{
                 ...state,
                 ...action.result
