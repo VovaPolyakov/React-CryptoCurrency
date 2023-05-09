@@ -12,6 +12,7 @@ const db = mysql.createPool({
 })
 
 app.use(cors());
+app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}));
 
 // db.connect(function(err){
@@ -26,10 +27,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.post("/api/insert",(req,res) => {
     const cryptoName = req.body.cryptoName;
     const cryptoPrice = req.body.cryptoPrice;
+    const cryptoTime = req.body.cryptoTime;
 
-    const sqlInsert = "INSERT INTO cryptocurrency (cryptoName,cryptoPrice) VALUES (?,?)"
+    const sqlInsert = "INSERT INTO cryptocurrency (cryptoName,cryptoPrice,cryptoTime) VALUES (?,?,?)"
 
-    db.query(sqlInsert,[cryptoName,cryptoPrice], (err,result) => {
+    db.query(sqlInsert,[cryptoName,cryptoPrice,cryptoTime], (err,result) => {
         console.log(err);
     })
 })

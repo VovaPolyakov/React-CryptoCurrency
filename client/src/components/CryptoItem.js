@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styles from '../styles/Home.module.scss'
 import { changeFavorite } from '../ducks/crypto/actions'
+import axios from 'axios'
 
 const CryptoItem = ({item,time,check}) => {
     const [checked,setChecked] = useState(true)
     const dispatch = useDispatch()
 
+    if(item?.favorite){
+        console.log('RESULT',item.name)
+        axios.post('http://localhost:3001/api/insert',{cryptoName:item.name,cryptoPrice:item.quote.USD.price,cryptoTime: new Date().toLocaleTimeString()}).then(() => {alert('successful insert')})
+    }
+    
 
     const handleChange = (e) => {
         setChecked(false)

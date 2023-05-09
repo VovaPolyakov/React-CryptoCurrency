@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import { GET_CRYPTO_DATA } from "../ducks/crypto/actions";
 
 
@@ -28,11 +28,6 @@ function getDataFromLocalStorage(){
     return JSON.parse(localStorage.getItem('crypto'))
 }
 
-const setDataToDataBase = (result) => {
-    console.log('RESULT',result[0]?.name)
-    axios.post('http://localhost:3001/api/insert',{cryptoName:[result[0].name],cryptoPrice:[result[0].quote.USD.price]}).then(() => {alert('successful insert')})
-}
-
 
 
 export const getDataMiddleWares = (store) => (dispatch) => async (action) => {
@@ -43,7 +38,6 @@ export const getDataMiddleWares = (store) => (dispatch) => async (action) => {
                     result = getDataFromLocalStorage()
             }else{
                 result = await fetchData()
-                setDataToDataBase(result)
             }   
             dispatch({
                 type:GET_CRYPTO_DATA,
