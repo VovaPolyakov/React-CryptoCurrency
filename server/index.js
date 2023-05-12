@@ -3,6 +3,7 @@ const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+
 const app = express()
 const db = mysql.createPool({
     host:"localhost",
@@ -23,6 +24,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 //       console.log("Подключение к серверу MySQL успешно установлено");
 //     }
 //  });
+
+app.get('/',(res,req) => (
+   req.send('hello')
+))
 
 app.post("/api/insert",(req,res) => {
     const cryptoName = req.body.cryptoName;
